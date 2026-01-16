@@ -1,22 +1,49 @@
+import { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { useOutletContext } from "react-router-dom";
 
 const Homepage = () => {
+  const { searchTerm } = useOutletContext();
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/games`)
+      .then((response) => response.json())
+      .then((data) => {
+        setGames(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Errore:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredGames = games.filter((game) =>
+    game.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (loading) {
+    return (
+      <Container className="my-4">
+        <p>Caricamento...</p>
+      </Container>
+    );
+  }
+
   return (
     <Container className="my-4">
       <Row xs={1} md={2} lg={3} className="g-4">
-        {[...Array(15)].map((_, i) => (
-          <Col key={i}>
+        {filteredGames.map((game) => (
+          <Col key={game.id}>
             <Card>
-              <Card.Img variant="top" src="holder.js/100px160" />
               <Card.Body>
-                <Card.Title>Card title {i + 1}</Card.Title>
-                <Card.Text>
-                  This is card number {i + 1} with some supporting text below as
-                  a natural lead-in to additional content.
-                </Card.Text>
+                <Card.Title>{game.title}</Card.Title>
+                <Card.Text>{game.category}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <Button href="game/:id">Link</Button>
+                <Button href="game/:id">Vai al dettaglio</Button>
               </Card.Footer>
             </Card>
           </Col>

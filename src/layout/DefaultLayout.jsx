@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 const DefaultLayout = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <>
-      <NavigationBar />
-      <Outlet />
+      <NavigationBar onSearch={handleSearch} />
+      <Outlet context={{ searchTerm }} />
     </>
   );
 };

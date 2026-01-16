@@ -4,8 +4,22 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useState } from "react";
 
-const NavigationBar = () => {
+const NavigationBar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearch(value);
+  };
+
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
@@ -21,14 +35,15 @@ const NavigationBar = () => {
             <Nav.Link href="favourites">Preferiti</Nav.Link>
             <Nav.Link href="diff">Comparatore</Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-3"
               aria-label="Search"
+              value={searchTerm}
+              onChange={handleChange}
             />
-            <Button variant="success">Cerca</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
