@@ -3,7 +3,7 @@ import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useOutletContext } from "react-router-dom";
 
 const Homepage = () => {
-  const { searchTerm } = useOutletContext();
+  const { searchTerm, category, sortOrder } = useOutletContext();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,9 +20,25 @@ const Homepage = () => {
       });
   }, []);
 
-  const filteredGames = games.filter((game) =>
+  let filteredGames = games.filter((game) =>
     game.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (category) {
+    filteredGames = filteredGames.filter(
+      (game) => game.category.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  if (sortOrder === "asc") {
+    filteredGames = [...filteredGames].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+  } else if (sortOrder === "desc") {
+    filteredGames = [...filteredGames].sort((a, b) =>
+      b.title.localeCompare(a.title)
+    );
+  }
 
   if (loading) {
     return (
@@ -43,7 +59,7 @@ const Homepage = () => {
                 <Card.Text>{game.category}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <Button href="game/:id">Vai al dettaglio</Button>
+                <Button href={`game/${game.id}`}>Vai al dettaglio</Button>
               </Card.Footer>
             </Card>
           </Col>

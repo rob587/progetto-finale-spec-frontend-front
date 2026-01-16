@@ -1,7 +1,7 @@
 import React from "react";
 
 const DetailGame = () => {
-  return <div></div>;
+  return <div>ciao</div>;
 };
 
 export default DetailGame;
