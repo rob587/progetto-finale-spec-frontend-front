@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   const { searchTerm, category, sortOrder } = useOutletContext();
@@ -21,22 +22,22 @@ const Homepage = () => {
   }, []);
 
   let filteredGames = games.filter((game) =>
-    game.title.toLowerCase().includes(searchTerm.toLowerCase())
+    game.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   if (category) {
     filteredGames = filteredGames.filter(
-      (game) => game.category.toLowerCase() === category.toLowerCase()
+      (game) => game.category.toLowerCase() === category.toLowerCase(),
     );
   }
 
   if (sortOrder === "asc") {
     filteredGames = [...filteredGames].sort((a, b) =>
-      a.title.localeCompare(b.title)
+      a.title.localeCompare(b.title),
     );
   } else if (sortOrder === "desc") {
     filteredGames = [...filteredGames].sort((a, b) =>
-      b.title.localeCompare(a.title)
+      b.title.localeCompare(a.title),
     );
   }
 
@@ -59,7 +60,9 @@ const Homepage = () => {
                 <Card.Text>{game.category}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <Button href={`game/${game.id}`}>Vai al dettaglio</Button>
+                <Button as={Link} to={`/games/${game.id}`}>
+                  Vai al dettaglio
+                </Button>
               </Card.Footer>
             </Card>
           </Col>

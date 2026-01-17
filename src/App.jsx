@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Homepage />} />
           <Route path="favourites" element={<Favourites />} />
-          <Route path="game/:id" element={<DetailGame />} />
+          <Route path="games/:id" element={<DetailGame />} />
           <Route path="diff" element={<Comparatore />} />
         </Route>
       </Routes>
