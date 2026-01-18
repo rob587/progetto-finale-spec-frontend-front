@@ -11,6 +11,10 @@ const Homepage = () => {
     addToFavourites,
     removeFromFavourites,
     isFavourite,
+    compareList,
+    addToCompare,
+    removeFromCompare,
+    isInCompare,
   } = useOutletContext();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);

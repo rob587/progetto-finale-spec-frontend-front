@@ -6,6 +6,23 @@ const DefaultLayout = () => {
   const [category, setCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const [compareList, setCompareList] = useState([]);
+
+  const addToCompare = (game) => {
+    setCompareList((prev) => {
+      if (prev.some((g) => g.id === game.id)) return prev;
+      if (prev.length === 2) return prev;
+      return [...prev, game];
+    });
+  };
+
+  const removeFromCompare = (id) => {
+    setCompareList((prev) => prev.filter((g) => g.id !== id));
+  };
+
+  const isInCompare = (id) => {
+    return compareList.some((g) => g.id === game.id);
+  };
 
   const addToFavourites = (game) => {
     setFavourites((prev) => {
@@ -51,6 +68,10 @@ const DefaultLayout = () => {
           addToFavourites,
           removeFromFavourites,
           isFavourite,
+          compareList,
+          addToCompare,
+          removeFromCompare,
+          isInCompare,
         }}
       />
     </>
