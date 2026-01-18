@@ -4,7 +4,14 @@ import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
-  const { searchTerm, category, sortOrder } = useOutletContext();
+  const {
+    searchTerm,
+    category,
+    sortOrder,
+    addToFavourites,
+    removeFromFavourites,
+    isFavourite,
+  } = useOutletContext();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -60,6 +67,17 @@ const Homepage = () => {
                 <Card.Text>{game.category}</Card.Text>
               </Card.Body>
               <Card.Footer>
+                <Button
+                  className="me-2"
+                  variant={isFavourite(game.id) ? "danger" : "outline-primary"}
+                  onClick={() => {
+                    isFavourite(game.id)
+                      ? removeFromFavourites(game.id)
+                      : addToFavourites(game);
+                  }}
+                >
+                  {isFavourite(game.id) ? "Rimuovi ❤️" : "Aggiungi ❤️"}
+                </Button>
                 <Button as={Link} to={`/games/${game.id}`}>
                   Vai al dettaglio
                 </Button>

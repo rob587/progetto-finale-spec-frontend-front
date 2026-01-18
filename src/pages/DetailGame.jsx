@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { useOutletContext } from "react-router-dom";
 
 const DetailGame = () => {
+  const { addToFavourites, removeFromFavourites, isFavourite } =
+    useOutletContext();
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -95,6 +99,20 @@ const DetailGame = () => {
 
           <div className="d-flex align-items-center justify-content-between">
             <h2 className="text-success mb-0">€{game.price}</h2>
+
+            <Button
+              variant={isFavourite(game.id) ? "danger" : "outline-primary"}
+              size="lg"
+              onClick={() =>
+                isFavourite(game.id)
+                  ? removeFromFavourites(game.id)
+                  : addToFavourites(game)
+              }
+            >
+              {isFavourite(game.id)
+                ? "Rimuovi dai preferiti ❤️"
+                : "Aggiungi ai preferiti ❤️"}
+            </Button>
 
             <Button variant="outline-primary" size="lg">
               ❤️ Aggiungi ai preferiti
