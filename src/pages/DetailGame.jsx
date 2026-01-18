@@ -21,7 +21,6 @@ const DetailGame = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Dati ricevuti:", data.game);
         setGame(data.game);
         setLoading(false);
       })
@@ -32,19 +31,19 @@ const DetailGame = () => {
       });
   }, [id]);
 
-  if (loading) {
-    return (
-      <Container className="my-4">
-        <p>Caricamento...</p>
-      </Container>
-    );
-  }
-
   if (error) {
     return (
       <Container className="my-4">
         <p>Gioco non trovato</p>
         <Button onClick={() => navigate("/")}>Torna alla home</Button>
+      </Container>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Container className="my-4">
+        <p>Caricamento...</p>
       </Container>
     );
   }
