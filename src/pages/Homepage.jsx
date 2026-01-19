@@ -78,13 +78,12 @@ const Homepage = () => {
                     if (isInCompare(game.id)) {
                       removeFromCompare(game.id);
                     } else {
-                      // Fetch dei dettagli completi prima di aggiungere
                       try {
                         const response = await fetch(
                           `http://localhost:3001/games/${game.id}`,
                         );
                         const data = await response.json();
-                        addToCompare(data.game); // Passa l'oggetto completo
+                        addToCompare(data.game);
                       } catch (error) {
                         console.error(
                           "Errore nel caricamento dei dettagli:",
@@ -104,13 +103,12 @@ const Homepage = () => {
                     if (isFavourite(game.id)) {
                       removeFromFavourites(game.id);
                     } else {
-                      // Fetch dei dettagli completi prima di aggiungere
                       try {
                         const response = await fetch(
                           `http://localhost:3001/games/${game.id}`,
                         );
                         const data = await response.json();
-                        addToFavourites(data.game); // Passa l'oggetto completo
+                        addToFavourites(data.game);
                       } catch (error) {
                         console.error(
                           "Errore nel caricamento dei dettagli:",
