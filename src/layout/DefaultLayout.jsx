@@ -21,7 +21,7 @@ const DefaultLayout = () => {
   };
 
   const isInCompare = (id) => {
-    return compareList.some((g) => g.id === game.id);
+    return compareList.some((g) => g.id === id);
   };
 
   const addToFavourites = (game) => {

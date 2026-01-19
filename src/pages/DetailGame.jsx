@@ -4,8 +4,14 @@ import { Card, Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { useOutletContext } from "react-router-dom";
 
 const DetailGame = () => {
-  const { addToFavourites, removeFromFavourites, isFavourite } =
-    useOutletContext();
+  const {
+    addToFavourites,
+    removeFromFavourites,
+    isFavourite,
+    addToCompare,
+    removeFromCompare,
+    isInCompare,
+  } = useOutletContext();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -101,6 +107,20 @@ const DetailGame = () => {
             <h2 className="text-success mb-0">€{game.price}</h2>
 
             <Button
+              size="lg"
+              variant={isInCompare(game.id) ? "warning" : "outline-warning"}
+              onClick={() => {
+                isInCompare(game.id)
+                  ? removeFromCompare(game.id)
+                  : addToCompare(game);
+              }}
+            >
+              {isInCompare(game.id)
+                ? "Rimuovi dal confronto"
+                : "Aggiungi al confronto"}
+            </Button>
+
+            <Button
               variant={isFavourite(game.id) ? "danger" : "outline-primary"}
               size="lg"
               onClick={() =>
@@ -112,10 +132,6 @@ const DetailGame = () => {
               {isFavourite(game.id)
                 ? "Rimuovi dai preferiti ❤️"
                 : "Aggiungi ai preferiti ❤️"}
-            </Button>
-
-            <Button variant="outline-primary" size="lg">
-              ❤️ Aggiungi ai preferiti
             </Button>
           </div>
         </Col>

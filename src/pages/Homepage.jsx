@@ -73,11 +73,51 @@ const Homepage = () => {
               <Card.Footer>
                 <Button
                   className="me-2"
+                  variant={isInCompare(game.id) ? "warning" : "outline-warning"}
+                  onClick={async () => {
+                    if (isInCompare(game.id)) {
+                      removeFromCompare(game.id);
+                    } else {
+                      // Fetch dei dettagli completi prima di aggiungere
+                      try {
+                        const response = await fetch(
+                          `http://localhost:3001/games/${game.id}`,
+                        );
+                        const data = await response.json();
+                        addToCompare(data.game); // Passa l'oggetto completo
+                      } catch (error) {
+                        console.error(
+                          "Errore nel caricamento dei dettagli:",
+                          error,
+                        );
+                      }
+                    }
+                  }}
+                >
+                  {isInCompare(game.id) ? "Rimuovi dal confronto" : "Confronta"}
+                </Button>
+
+                <Button
+                  className="me-2"
                   variant={isFavourite(game.id) ? "danger" : "outline-primary"}
-                  onClick={() => {
-                    isFavourite(game.id)
-                      ? removeFromFavourites(game.id)
-                      : addToFavourites(game);
+                  onClick={async () => {
+                    if (isFavourite(game.id)) {
+                      removeFromFavourites(game.id);
+                    } else {
+                      // Fetch dei dettagli completi prima di aggiungere
+                      try {
+                        const response = await fetch(
+                          `http://localhost:3001/games/${game.id}`,
+                        );
+                        const data = await response.json();
+                        addToFavourites(data.game); // Passa l'oggetto completo
+                      } catch (error) {
+                        console.error(
+                          "Errore nel caricamento dei dettagli:",
+                          error,
+                        );
+                      }
+                    }
                   }}
                 >
                   {isFavourite(game.id) ? "Rimuovi ❤️" : "Aggiungi ❤️"}

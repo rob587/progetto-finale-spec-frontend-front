@@ -51,7 +51,10 @@ const NavigationBar = ({ onSearch, onCategoryChange, onSortChange }) => {
             <Nav.Link as={Link} to={"favourites"}>
               Preferiti
             </Nav.Link>
-            <Nav.Link href="diff">Comparatore</Nav.Link>
+            <Nav.Link as={Link} to={"diff"}>
+              {" "}
+              Comparatore
+            </Nav.Link>
           </Nav>
           <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
