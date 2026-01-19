@@ -5,9 +5,6 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 const Comparatore = () => {
   const { compareList, removeFromCompare } = useOutletContext();
 
-  console.log("CompareList completo:", compareList);
-  console.log("CompareList length:", compareList.length);
-
   if (compareList.length < 2) {
     return (
       <Container className="my-4">
@@ -22,11 +19,6 @@ const Comparatore = () => {
   }
 
   const [gameA, gameB] = compareList;
-
-  console.log("GameA:", gameA);
-  console.log("GameB:", gameB);
-  console.log("GameA.platform:", gameA.platform);
-  console.log("GameB.platform:", gameB.platform);
 
   return (
     <Container className="my-4">

@@ -61,69 +61,173 @@ const Homepage = () => {
   }
 
   return (
-    <Container className="my-4">
+    <Container className="my-5">
+      <h2
+        className="text-center mb-4 fw-bold"
+        style={{
+          fontSize: "2.5rem",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          textShadow: "2px 2px 4px rgba(0,0,0,0.1)",
+        }}
+      >
+        🎮 Catalogo Giochi
+      </h2>
+
       <Row xs={1} md={2} lg={3} className="g-4">
         {filteredGames.map((game) => (
           <Col key={game.id}>
-            <Card>
-              <Card.Body>
-                <Card.Title>{game.title}</Card.Title>
-                <Card.Text>{game.category}</Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Button
-                  className="me-2"
-                  variant={isInCompare(game.id) ? "warning" : "outline-warning"}
-                  onClick={async () => {
-                    if (isInCompare(game.id)) {
-                      removeFromCompare(game.id);
-                    } else {
-                      try {
-                        const response = await fetch(
-                          `http://localhost:3001/games/${game.id}`,
-                        );
-                        const data = await response.json();
-                        addToCompare(data.game);
-                      } catch (error) {
-                        console.error(
-                          "Errore nel caricamento dei dettagli:",
-                          error,
-                        );
-                      }
-                    }
-                  }}
-                >
-                  {isInCompare(game.id) ? "Rimuovi dal confronto" : "Confronta"}
-                </Button>
+            <Card
+              className="h-100 border-0 shadow-lg"
+              style={{
+                borderRadius: "15px",
+                overflow: "hidden",
+                transition: "all 0.3s ease",
+                background: "linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-10px)";
+                e.currentTarget.style.boxShadow =
+                  "0 15px 35px rgba(102, 126, 234, 0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+              }}
+            >
+              <div
+                style={{
+                  height: "8px",
+                  background:
+                    "linear-gradient(90deg, #667eea 0%, #764ba2 100%)",
+                }}
+              />
 
-                <Button
-                  className="me-2"
-                  variant={isFavourite(game.id) ? "danger" : "outline-primary"}
-                  onClick={async () => {
-                    if (isFavourite(game.id)) {
-                      removeFromFavourites(game.id);
-                    } else {
-                      try {
-                        const response = await fetch(
-                          `http://localhost:3001/games/${game.id}`,
-                        );
-                        const data = await response.json();
-                        addToFavourites(data.game);
-                      } catch (error) {
-                        console.error(
-                          "Errore nel caricamento dei dettagli:",
-                          error,
-                        );
-                      }
-                    }
+              <Card.Body className="d-flex flex-column">
+                <Card.Title
+                  className="fw-bold mb-3"
+                  style={{
+                    fontSize: "1.4rem",
+                    color: "#2d3748",
+                    minHeight: "60px",
                   }}
                 >
-                  {isFavourite(game.id) ? "Rimuovi ❤️" : "Aggiungi ❤️"}
-                </Button>
-                <Button as={Link} to={`/games/${game.id}`}>
-                  Vai al dettaglio
-                </Button>
-              </Card.Footer>
+                  {game.title}
+                </Card.Title>
+
+                <div className="mb-3">
+                  <span
+                    className="badge"
+                    style={{
+                      backgroundColor: "#667eea",
+                      color: "white",
+                      padding: "8px 16px",
+                      borderRadius: "20px",
+                      fontSize: "0.9rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {game.category}
+                  </span>
+                </div>
+
+                <div className="mt-auto d-flex flex-column gap-2">
+                  <Button
+                    variant={
+                      isInCompare(game.id) ? "warning" : "outline-warning"
+                    }
+                    className="fw-semibold"
+                    style={{
+                      borderRadius: "10px",
+                      padding: "10px",
+                      border: isInCompare(game.id)
+                        ? "none"
+                        : "2px solid #ffc107",
+                      transition: "all 0.3s ease",
+                    }}
+                    onClick={async () => {
+                      if (isInCompare(game.id)) {
+                        removeFromCompare(game.id);
+                      } else {
+                        try {
+                          const response = await fetch(
+                            `http://localhost:3001/games/${game.id}`,
+                          );
+                          const data = await response.json();
+                          addToCompare(data.game);
+                        } catch (error) {
+                          console.error(
+                            "Errore nel caricamento dei dettagli:",
+                            error,
+                          );
+                        }
+                      }
+                    }}
+                  >
+                    {isInCompare(game.id) ? "✓ Nel confronto" : "⚔️ Confronta"}
+                  </Button>
+
+                  <Button
+                    variant={isFavourite(game.id) ? "danger" : "outline-danger"}
+                    className="fw-semibold"
+                    style={{
+                      borderRadius: "10px",
+                      padding: "10px",
+                      border: isFavourite(game.id)
+                        ? "none"
+                        : "2px solid #dc3545",
+                      transition: "all 0.3s ease",
+                    }}
+                    onClick={async () => {
+                      if (isFavourite(game.id)) {
+                        removeFromFavourites(game.id);
+                      } else {
+                        try {
+                          const response = await fetch(
+                            `http://localhost:3001/games/${game.id}`,
+                          );
+                          const data = await response.json();
+                          addToFavourites(data.game);
+                        } catch (error) {
+                          console.error(
+                            "Errore nel caricamento dei dettagli:",
+                            error,
+                          );
+                        }
+                      }
+                    }}
+                  >
+                    {isFavourite(game.id) ? "❤️ Nei preferiti" : "🤍 Aggiungi"}
+                  </Button>
+
+                  <Button
+                    as={Link}
+                    to={`/games/${game.id}`}
+                    className="fw-bold"
+                    style={{
+                      borderRadius: "10px",
+                      padding: "10px",
+                      background:
+                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                      border: "none",
+                      color: "white",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "scale(1.05)";
+                      e.target.style.boxShadow =
+                        "0 5px 15px rgba(102, 126, 234, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "scale(1)";
+                      e.target.style.boxShadow = "none";
+                    }}
+                  >
+                    🎯 Vai al dettaglio
+                  </Button>
+                </div>
+              </Card.Body>
             </Card>
           </Col>
         ))}
