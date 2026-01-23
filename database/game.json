@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "title": "The Witcher 3: Wild Hunt",
+    "category": "RPG",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Open World",
+    "releaseYear": 2015,
+    "price": 29.99
+  },
+  {
+    "id": 2,
+    "title": "Elden Ring",
+    "category": "RPG",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Action RPG",
+    "releaseYear": 2022,
+    "price": 59.99
+  },
+  {
+    "id": 3,
+    "title": "God of War Ragnarok",
+    "category": "Action",
+    "platform": "PS5",
+    "genre": "Action Adventure",
+    "releaseYear": 2022,
+    "price": 69.99
+  },
+  {
+    "id": 4,
+    "title": "Cyberpunk 2077",
+    "category": "RPG",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Sci-Fi RPG",
+    "releaseYear": 2020,
+    "price": 39.99
+  },
+  {
+    "id": 5,
+    "title": "Red Dead Redemption 2",
+    "category": "Action",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Open World",
+    "releaseYear": 2018,
+    "price": 49.99
+  },
+  {
+    "id": 6,
+    "title": "Hades",
+    "category": "Indie",
+    "platform": "PC / Switch / PS5",
+    "genre": "Roguelike",
+    "releaseYear": 2020,
+    "price": 24.99
+  },
+  {
+    "id": 7,
+    "title": "Hollow Knight",
+    "category": "Indie",
+    "platform": "PC / Switch / PS5",
+    "genre": "Metroidvania",
+    "releaseYear": 2017,
+    "price": 14.99
+  },
+  {
+    "id": 8,
+    "title": "FIFA 24",
+    "category": "Sport",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Sports Simulation",
+    "releaseYear": 2023,
+    "price": 69.99
+  },
+  {
+    "id": 9,
+    "title": "Call of Duty: Modern Warfare II",
+    "category": "Shooter",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "FPS",
+    "releaseYear": 2022,
+    "price": 69.99
+  },
+  {
+    "id": 10,
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "category": "Adventure",
+    "platform": "Nintendo Switch",
+    "genre": "Open World",
+    "releaseYear": 2017,
+    "price": 59.99
+  },
+  {
+    "id": 11,
+    "title": "Super Mario Odyssey",
+    "category": "Platform",
+    "platform": "Nintendo Switch",
+    "genre": "3D Platformer",
+    "releaseYear": 2017,
+    "price": 49.99
+  },
+  {
+    "id": 12,
+    "title": "Minecraft",
+    "category": "Sandbox",
+    "platform": "PC / Console / Mobile",
+    "genre": "Sandbox",
+    "releaseYear": 2011,
+    "price": 26.95
+  },
+  {
+    "id": 13,
+    "title": "Stardew Valley",
+    "category": "Indie",
+    "platform": "PC / Switch / PS5",
+    "genre": "Simulation",
+    "releaseYear": 2016,
+    "price": 13.99
+  },
+  {
+    "id": 14,
+    "title": "Resident Evil 4 Remake",
+    "category": "Horror",
+    "platform": "PC / PS5 / Xbox",
+    "genre": "Survival Horror",
+    "releaseYear": 2023,
+    "price": 59.99
+  },
+  {
+    "id": 15,
+    "title": "Baldur's Gate 3",
+    "category": "RPG",
+    "platform": "PC / PS5",
+    "genre": "CRPG",
+    "releaseYear": 2023,
+    "price": 59.99
+  }
+]
